@@ -44,7 +44,7 @@ class php::repo::redhat (
 
     yumrepo { 'remi-php74':
       descr      => 'Remi\'s PHP 7.4 RPM repository for Enterprise Linux $releasever - $basearch',
-      mirrorlist => "http://cdn.remirepo.net/enterprise/${releasever}/remi/php74/$basearch/mirror"
+      mirrorlist => "http://cdn.remirepo.net/enterprise/${releasever}/remi/php74/$basearch/mirror",
       enabled    => 1,
       gpgcheck   => 1,
       gpgkey     => 'https://rpms.remirepo.net/RPM-GPG-KEY-remi',
