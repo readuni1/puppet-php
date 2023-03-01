@@ -157,7 +157,7 @@ class php::globals (
                 $rhscl_root             = "/opt/remi/php${php_version_sans_dot}/root"
                 $default_config_root    = "/etc/opt/remi/php${php_version_sans_dot}"
                 $default_fpm_pid_file   = "${rhscl_root}/run/php-fpm.pid"
-                $package_prefix         = "php${php_version_sans_dot}-"
+                $package_prefix         = "php${php_version_sans_dot}-php-"
                 $fpm_service_name       = "php${php_version_sans_dot}-php-fpm"
               }
             }
