@@ -146,11 +146,20 @@ class php::globals (
         default: {
           case $rhscl_mode {
             'remi': {
-              $rhscl_root             = "/opt/remi/${php_version}/root"
-              $default_config_root    = "/etc/opt/remi/${php_version}"
-              $default_fpm_pid_file   = '/var/run/php-fpm/php-fpm.pid'
-              $package_prefix         = "${php_version}-php-"
-              $fpm_service_name       = "${php_version}-php-fpm"
+              if (versioncmp($facts['os']['release']['major'],'8') < 0) {
+                $rhscl_root             = "/opt/remi/${php_version}/root"
+                $default_config_root    = "/etc/opt/remi/${php_version}"
+                $default_fpm_pid_file   = '/var/run/php-fpm/php-fpm.pid'
+                $package_prefix         = "${php_version}-php-"
+                $fpm_service_name       = "${php_version}-php-fpm"
+              } else {
+                $php_version_sans_dot = $php_version.regsubst(/\./, '', 'G')
+                $rhscl_root             = "/opt/remi/php${php_version_sans_dot}/root"
+                $default_config_root    = "/etc/opt/remi/php${php_version_sans_dot}"
+                $default_fpm_pid_file   = "${rhscl_root}/run/php-fpm.pid"
+                $package_prefix         = "php${php_version_sans_dot}-"
+                $fpm_service_name       = "php${php_version_sans_dot}-php-fpm"
+              }
             }
             'rhscl': {
               $rhscl_root             = "/opt/rh/${php_version}/root"
